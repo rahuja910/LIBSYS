@@ -1,0 +1,44 @@
+<%= link_to("<< Back to Book List", {:action => 'manage_books'} , :class => 'back-to-link') %>
+
+<div class="Books index"
+
+
+
+<h2>Checkout History of book</h2>
+<%= @book.title%>
+
+
+<table class="listing" summary="History list">
+<tr class="header"
+<th>&nbsp;</th>
+<th>Member E-mail</th>
+<th>Member Name</th>
+<th>Borrow Date</th>
+<th>Return Date</th>
+</tr>
+
+
+<% @members=@members.uniq %>
+<% @members.each do |member| %>
+<tr>
+<%borrows=member.borrow_books.where(book_id:@book.id)%>
+<% borrows.each do |borrow| %>
+<td><%= member.email %></td> 
+<td><%= member.name %></td>  
+<td><%= borrow.borrow_date %></td> 
+<td><%= borrow.return_date %></td> 
+</br>
+
+
+</br>
+
+</td>
+</tr>
+
+</table>
+<%end%>
+<%end%>
+
+
+
+

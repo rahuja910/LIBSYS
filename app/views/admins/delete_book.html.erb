@@ -1,0 +1,22 @@
+<%= link_to("<< Back to List", {:action => 'manage_books'} , :class => 'back-to-link') %>
+
+<div class= "Books delete">
+<h2>Delete Book</h2>
+
+<%= form_for(:book, :url => {:action => 'destroy_book', :id => @book.id}) do |f| %>
+
+	<p>Are you sure that you want to permamently delete this Book? </p>
+
+<p class="reference name"><%= @book.title %></p>
+
+<div class="form-buttons">
+
+<%= submit_tag("Delete Book") %>
+
+</div>
+
+<% end %>
+</div>
+
+
+

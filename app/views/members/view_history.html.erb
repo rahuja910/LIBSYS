@@ -1,0 +1,36 @@
+<%= link_to("<< Back to Member Page", {:action => 'index'} , :class => 'back-to-link') %>
+
+<h1>Member History for</h1>
+<%=@member.email%>
+
+<table class="listing" summary="Book Issued detail">
+<h2>Book Checkout History</h2>
+<tr class="header"
+<th>&nbsp;</th>
+<th>ISBN</th> 
+<th>Title</th> 
+<th>Authors</th> 
+<th>Borrow Date</th> 
+<th>Return Date</th> 
+</tr>
+<% @books=@books.uniq %>
+<% @books.each do |book| %>
+<tr>
+<%borrows=book.borrow_books.where(member_id:@member.id)%>
+<% borrows.each do |borrow| %>
+<td><%= book.ISBN %></td> 
+<td><%= book.title %></td> 
+<td><%= book.authors %></td> 
+<td><%= borrow.borrow_date %></td> 
+<td><%= borrow.return_date %></td> 
+</br>
+
+
+</br>
+
+</td>
+</tr>
+
+</table>
+<%end%>
+<%end%>

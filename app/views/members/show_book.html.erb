@@ -1,0 +1,57 @@
+<% if !flash[:notice].blank? %>
+	<div class = "notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<%= link_to("<< Back to Book List", {:action => 'manage_books'} , :class => 'back-to-link') %>
+
+<div class="books show">
+<h2>Book Details</h2>
+
+<table summary="Book detail view">
+	<tr>
+		<th>ISBN</th>
+		<td><%= @book.ISBN %></td>
+	</tr>
+	<tr>
+		<th>Title</th>
+		<td><%= @book.title %></td>
+	</tr>
+	<tr>
+		<th>Authors</th>
+		<td><%= @book.authors %></td>
+	</tr>
+	<tr>
+		<th>Description</th>
+		<td><%= @book.description %></td>
+	</tr>
+	<tr>
+		<th>Status</th>
+		<td><%= @book.status %></td>
+	</tr>
+
+	<% if(@borrow!=nil) then %>
+	<tr>
+		<th>Borrow Date</th>
+		<td><%= @borrow.borrow_date %></td>
+	</tr>
+
+	<tr>
+		<th>Student E-mail</th>
+		<td><%= @member.email%></td>
+	</tr>
+	<% end %>
+
+	<tr>
+		<th>Created At</th>
+		<td><%= @book.created_at %></td>
+	</tr>
+	<tr>
+		<th>Updated At</th>
+		<td><%= @book.updated_at %></td>
+	</tr>
+     </table>
+</div>
+
+	

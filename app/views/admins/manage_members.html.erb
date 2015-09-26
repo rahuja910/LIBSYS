@@ -1,0 +1,38 @@
+<% if !flash[:notice].blank? %>
+	<div class = "notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<%= link_to("<< Back to Admin List", {:action => 'index'} , :class => 'back-to-link') %>
+
+<div class="Members index"
+
+<h2>Manage Members</h2>
+s
+<table class="listing" summary="Members list">
+<tr class="header"
+<th>&nbsp;</th>
+<th>E-Mail</th>
+<th>Name</th>
+</tr>
+
+<% @members.each do |member| %>
+<tr>
+<td><%= member.email %></td>
+<td><%= member.name %></td>
+
+<td class="actions">
+<%= link_to("View Details",{:action => 'show_member' , :id => member.id}, :class => 'action show_member') %>
+<%= link_to("View Checkout History",{:action => 'show_member_history' , :id => member.id}, :class => 'action show_member_history') %>
+<%= link_to("Delete",{:action => 'delete_member' , :id => member.id}, :class => 'action delete_member') %>
+</td>
+</tr>
+<% end %>
+</table>
+</br>
+</div>
+
+
+
+

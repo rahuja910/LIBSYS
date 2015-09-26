@@ -1,0 +1,41 @@
+<%= link_to("<< Back to Book List", {:action => 'manage_books'} , :class => 'back-to-link') %>
+
+<div class= "books new">
+<h2>Add New Book</h2>
+
+<%= form_for(:book, :url => {:action => 'create_book'}) do |f| %>
+<%= error_messages_for(@book) %>
+	<table summary="Book form fields">
+	<tr>
+		<th>ISBN</th>
+		<td><%= f.text_field(:ISBN) %></td>
+	</tr>
+	
+	<tr>
+		<th>Title</th>
+		<td><%= f.text_field(:title) %></td>
+	</tr>
+
+	<tr>
+		<th>Description</th>
+		<td><%= f.text_field(:description) %></td>
+	</tr>
+
+	<tr>
+		<th>Authors</th>
+		<td><%= f.text_field(:authors) %></td>
+	</tr>
+
+</table>
+
+<div class="form-buttons">
+
+<%= submit_tag("Add Book") %>
+
+</div>
+
+<% end %>
+</div>
+
+
+

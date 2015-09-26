@@ -1,0 +1,40 @@
+<%= link_to("<< Homepage", {:controller => 'default',:action => 'login'} , :class => 'back-to-link') %>
+
+<div class= "Members new">
+<h2>Register Member</h2>
+
+<%= form_for(:member, :url => {:action => 'create'}) do |f| %>
+		<%= error_messages_for(@member) %>
+
+	<table summary="Register Member form fields">
+	<tr>
+		<th>E-Mail</th>
+		<td><%= f.text_field(:email) %></td>
+	</tr>
+	
+		<tr>
+		<th>Name</th>
+		<td><%= f.text_field(:name) %></td>
+	</tr>
+
+		<tr>
+		<th>Password</th>
+		<td><%= f.password_field :password %></td>
+	</tr>
+	<tr>
+		<th>Confirm Password</th>
+		<td><%= f.password_field :password_confirmation %></td>
+	</tr>
+</table>
+
+<div class="form-buttons">
+
+<%= submit_tag("Register Member") %>
+
+</div>
+
+<% end %>
+</div>
+
+
+

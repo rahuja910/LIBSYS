@@ -1,0 +1,32 @@
+<% if !flash[:notice].blank? %>
+	<div class = "notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<%= link_to("<< Back to List", {:action => 'index'} , :class => 'back-to-link') %>
+
+<div class="members show">
+<h2>Show Member</h2>
+
+<table summary="Member detail view">
+	<tr>
+		<th>E-Mail</th>
+		<td><%= @member.email %></td>
+	</tr>
+	<tr>
+		<th>Name</th>
+		<td><%= @member.name %></td>
+	</tr>
+	<tr>
+		<th>Created At</th>
+		<td><%= @member.created_at %></td>
+	</tr>
+	<tr>
+		<th>Updated At</th>
+		<td><%= @member.updated_at %></td>
+	</tr>
+     </table>
+</div>
+
+	

@@ -1,0 +1,40 @@
+<%= link_to("<< Back to List", {:action => 'index'} , :class => 'back-to-link') %>
+
+<div class= "admins edit">
+<h2>Edit Admin</h2>
+
+<%= form_for(:admin, :url => {:action => 'update', :id => @admin.id}) do |f| %>
+	<%= error_messages_for(@admin) %>
+	<table summary="Admin form fields">
+	<tr>
+		<th>E-Mail</th>
+		<td><%= f.text_field(:email) %></td>
+	</tr>
+	
+		<tr>
+		<th>Name</th>
+		<td><%= f.text_field(:name) %></td>
+	</tr>
+
+	<tr>
+		<th>Password</th>
+		<td><%= f.password_field(:password) %></td>
+	</tr>
+
+	<tr>
+		<th>Confirm Password</th>
+		<td><%= f.password_field :password_confirmation %></td>
+	</tr>
+</table>
+
+<div class="form-buttons">
+
+<%= submit_tag("Edit Admin") %>
+
+</div>
+
+<% end %>
+</div>
+
+
+

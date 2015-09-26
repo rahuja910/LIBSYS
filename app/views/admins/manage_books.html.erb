@@ -1,0 +1,54 @@
+<% if !flash[:notice].blank? %>
+	<div class = "notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<%= link_to("<< Back to Admin List", {:action => 'index'} , :class => 'back-to-link') %>
+
+<div class="Books index"
+
+
+
+<h2>Manage Books</h2>
+
+
+<table class="listing" summary="Books list">
+<tr class="header"
+<th>&nbsp;</th>
+<th>ISBN</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Status</th>
+</tr>
+
+<% @books.each do |book| %>
+<tr>
+<td><%= book.ISBN %></td>
+<td><%= book.title %></td>
+<td><%= book.authors %></td>
+<td><%= book.status %></td>
+
+<td class="actions">
+<%= link_to("View Details",{:action => 'show_book' , :id => book.id}, :class => 'action show_book') %>
+<%= link_to("View Checkout History",{:action => 'show_book_history' , :id => book.id}, :class => 'action show_book_history') %>
+<%= link_to("Edit",{:action => 'edit_book' , :id => book.id}, :class => 'action edit_book') %>
+<% if (book.status=="Available") then %>
+<%= link_to("Delete",{:action => 'delete_book' , :id => book.id}, :class => 'action delete_book') %>
+<% else %>
+<%= link_to("Return",{:action => 'return_book' , :id => book.id}, :class => 'action return_book') %>
+</td>
+</tr>
+<% end %>
+
+<% end %>
+</table>
+
+<%= link_to("Add New Book",{:action => 'add_book'}, :class => 'action add_book') %>
+
+</br>
+</div>
+
+
+
+

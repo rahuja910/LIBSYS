@@ -1,0 +1,47 @@
+<% if !flash[:notice].blank? %>
+	<div class = "notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+
+
+<div class="Admin index"
+
+<h1>Administrators</h1>
+<h2>Welcome</h2>
+<%=session[:email]%>
+
+<table class="listing" summary="Admin list">
+<tr class="header"
+<th>&nbsp;</th>
+<th>E-Mail</th>
+<th>Name</th>
+</tr>
+
+<% @admins.each do |admin| %>
+<tr>
+<td><%= admin.email %></td>
+<td><%= admin.name %></td>
+
+<td class="actions">
+<%= link_to("Show",{:action => 'show' , :id => admin.id} , :class => 'action show') %>
+<% if(admin.id!=1 && admin.id==session[:user_id]) then %>
+<%= link_to("Edit",{:action => 'edit' , :id => admin.id}, :class => 'action edit') %>
+<% end %>
+<% if(admin.id!=1 && admin.id!=session[:user_id]) then %>
+<%= link_to("Delete",{:action => 'delete' , :id => admin.id}, :class => 'action delete') %>
+</td>
+</tr>
+<%end%>
+<% end %>
+</table>
+</br>
+<%= link_to("Add New Admin", {:action => 'new'}, :class => 'action new') %> </br>
+<%= link_to("Manage Books", {:action => 'manage_books'}, :class => 'action manage_books') %> </br>
+<%= link_to("Manage Members", {:action => 'manage_members'}, :class => 'action manage_members') %></br>
+<%= link_to("Logout",{:controller => 'accessa',:action => 'logout'}, :class => 'action logout') %>
+</div>
+
+
+
+

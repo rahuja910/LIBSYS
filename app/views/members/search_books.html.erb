@@ -1,0 +1,53 @@
+<% if !flash[:notice].blank? %>
+	<div class = "notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<%= link_to("<< Back to Books Page", {:action => 'manage_books'} , :class => 'back-to-link') %>
+
+<div class="Search Books index"
+
+<h2>Search Result</h2>
+
+
+<table class="listing" summary="Books list">
+<tr class="header"
+<th>&nbsp;</th>
+<th>ISBN</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Status</th>
+</tr>
+
+<% @books.each do |book| %>
+<tr>
+<td><%= book.ISBN %></td>
+<td><%= book.title %></td>
+<td><%= book.authors %></td>
+<td><%= book.status %></td>
+
+<td class="actions">
+<%= link_to("View Details",{:action => 'show_book' , :id => book.id}, :class => 'action show_book') %>
+<%= link_to("View Checkout History",{:action => 'show_book_history' , :id => book.id}, :class => 'action show_book_history') %>
+<% if (book.status=="Available")%>
+<%= link_to("Checkout Book",{:action => 'checkout_book', :book_id => book.id, :user_id => session[:user_id]}, :class => 'action checkout_book') %>
+<%end%>
+</td>
+</tr>
+<% end %>
+</table>
+
+
+
+</br>
+
+</table>
+
+
+
+</div>
+
+
+
+

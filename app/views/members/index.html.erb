@@ -1,0 +1,74 @@
+<% if !flash[:notice].blank? %>
+	<div class = "notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class= "Member index"
+<h1>Members</h1> </br>
+<table class="listing" summary="Member detail">
+<h2>Welcome</h2>
+<tr class="header"
+<th>&nbsp;</th>
+<th>E-Mail</th>
+<th>Name</th>
+</tr>
+<tr>
+<td><%= @member.email %></td>
+<td><%= @member.name %></td>
+
+<td class="actions">
+<%= link_to("Show",{:action => 'show' , :id => @member.id} , :class => 'action show') %>
+
+<%= link_to("Edit",{:action => 'edit' , :id => @member.id}, :class => 'action edit') %>
+
+</td>
+</tr>
+
+
+
+
+</div>
+
+
+</table>
+</br>
+
+<table class="listing" summary="Book Issued detail">
+<h2>Books Issued</h2>
+<tr class="header"
+<th>&nbsp;</th>
+<th>ISBN</th> 
+<th>Title</th> 
+<th>Authors</th> 
+<th>Borrow Date</th> 
+<th>Due Date</th> 
+</tr>
+<% i=0 %>
+<% @books=@books.uniq %>
+<% @books.each do |book| %>
+<tr>
+<%borrow=BorrowBook.where(return_date:nil).where(book_id:book)%>
+<%if @books[i].status=="Checked Out" && @member.id==session[:user_id] && borrow[0].return_date.nil? %>
+<td><%= @books[i].ISBN %></td> 
+<td><%= @books[i].title %></td> 
+<td><%= @books[i].authors %></td> 
+<% if borrow.any? %>
+<td><%= borrow[0].borrow_date %></td> 
+<td><%= borrow[0].borrow_date+7 %></td> 
+<%end%>
+<td><%= link_to("Return Book", {:action => 'return_book',:id => @books[i].id,:user_id => session[:user_id]}, :class => 'action return_book') %></td>
+<%end%>
+<% i=i+1 %>
+</br>
+
+</td>
+</tr>
+
+</table>
+<%end%>
+
+<%= link_to("Issue Books", {:action => 'manage_books'}, :class => 'action manage_books') %> </br>
+<%= link_to("View Checkout History", {:action => 'view_history' ,:user_id => session[:user_id]}, :class => 'action view_history') %> </br>
+
+<%= link_to("Logout",{:controller => 'access',:action => 'logout'}, :class => 'action logout') %>

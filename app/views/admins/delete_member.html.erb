@@ -1,0 +1,22 @@
+<%= link_to("<< Back to List", {:action => 'manage_members'} , :class => 'back-to-link') %>
+
+<div class= "Members delete">
+<h2>Delete Member</h2>
+
+<%= form_for(:member, :url => {:action => 'destroy_member', :id => @member.id}) do |f| %>
+
+	<p>Are you sure that you want to permamently delete this Member? </p>
+
+<p class="reference name"><%= @member.name %></p>
+
+<div class="form-buttons">
+
+<%= submit_tag("Delete Member") %>
+
+</div>
+
+<% end %>
+</div>
+
+
+

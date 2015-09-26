@@ -1,0 +1,75 @@
+<% if !flash[:notice].blank? %>
+	<div class = "notice">
+	<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<%= link_to("<< Back to Member Page", {:action => 'index'} , :class => 'back-to-link') %>
+
+<div class="Books index"
+
+
+
+<h2>Manage Books</h2>
+
+
+<table class="listing" summary="Books list">
+<tr class="header"
+<th>&nbsp;</th>
+<th>ISBN</th>
+<th>Title</th>
+<th>Authors</th>
+<th>Status</th>
+</tr>
+
+<% @books.each do |book| %>
+<tr>
+<td><%= book.ISBN %></td>
+<td><%= book.title %></td>
+<td><%= book.authors %></td>
+<td><%= book.status %></td>
+
+<td class="actions">
+<%= link_to("View Details",{:action => 'show_book' , :id => book.id}, :class => 'action show_book') %>
+<%= link_to("View Checkout History",{:action => 'show_book_history' , :id => book.id}, :class => 'action show_book_history') %>
+<% if (book.status=="Available")%>
+<%= link_to("Checkout Book",{:action => 'checkout_book', :book_id => book.id, :user_id => session[:user_id]}, :class => 'action checkout_book') %>
+<%end%>
+</td>
+</tr>
+<% end %>
+</table>
+
+
+
+</br>
+
+
+
+  <%= form_tag :action => 'search_books', :method => 'get' do %>
+      <%= text_field_tag :search_book, params[:search_book], :id => 'search_book_field' %></br>
+
+<select id="search_option" name="search_option">
+  <option value="ISBN">ISBN</option>
+  <option value="Title">Title</option>
+  <option value="Authors">Authors</option>
+  <option value="Description">Description</option>
+  <option value="Status">Status</option>
+</select>
+	
+      <%= submit_tag "Search Book" %> 
+
+
+
+	
+</table>
+
+
+<%end%>
+
+
+</div>
+
+
+
+
